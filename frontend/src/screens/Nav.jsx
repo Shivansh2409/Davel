@@ -1,0 +1,64 @@
+import React,{useContext} from 'react'
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../context/user.context';
+import axios from '../config/axios';
+
+const Nav = () => {
+    const navigateTo=useNavigate();
+    const {user}=useContext(UserContext)
+
+    const token = localStorage.getItem('token');
+    function logoutHandler(e){
+        e.preventDefault()
+        axios.get('/users/logout',{
+      headers: {
+        // ✅ THIS IS THE CRUCIAL PART
+        'Authorization': `Bearer ${token}`
+      }
+      })
+        .then((res)=>{
+            console.log(res.data)
+            localStorage.setItem('token','null')
+            setUser(null)
+            navigateTo('/')
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+  return (
+    <div className="bg-gray-900 text-white font-sans">
+      {/* Floating Navigation Bar */}
+      <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+        <div className="container bg-gray-900/30 backdrop-blur-lg rounded-full border border-white/10 shadow-2xl flex items-center justify-between px-6 py-3">
+          <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600 pr-8">
+            Davel UI
+          </div>
+          <div className="hidden md:flex space-x-8 items-center text-gray-300">
+            <a href="#" className="hover:text-purple-400 transition duration-300">Features</a>
+            <a href="#" className="hover:text-purple-400 transition duration-300">Pricing</a>
+            <a href="#" className="hover:text-purple-400 transition duration-300">About</a>
+            <a href="#" className="hover:text-purple-400 transition duration-300">Contact</a>
+          </div>
+            {
+                user === null
+                  ?  <button
+                            onClick={() => navigateTo('/login')}
+                            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l text-white font-semibold py-2 px-5 rounded-full transition-transform transform hover:scale-105 shadow-lg ml-8"
+                        >
+                            Sign Up
+                        </button>
+                  :  <button
+                        onClick={logoutHandler}
+                        className="bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l text-white font-semibold py-2 px-5 rounded-full transition-transform transform hover:scale-105 shadow-lg ml-8"
+                    >
+                        log Out
+                    </button>
+            }
+         
+        </div>
+      </nav>
+    </div>
+  )
+}
+
+export default Nav

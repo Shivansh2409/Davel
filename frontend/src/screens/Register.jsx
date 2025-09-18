@@ -1,8 +1,22 @@
-import React from 'react'
+import React ,{useState}from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
     const navigateTo=useNavigate();
+    const [email,setEmail]=useState('')
+    const [password,setPassword]=useState('')
+
+    function summitHandler(e){
+        e.preventDefault()
+        axios.post('/user/register',{
+            email,
+            password
+        }).then((res)=>{
+            navigateTo('/')
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
   return (
     <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center font-sans p-4">
       <div className="w-full max-w-md">
@@ -14,13 +28,14 @@ const Register = () => {
                 <p className="text-gray-400 mt-2">Join us and start your journey.</p>
             </div>
 
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={summitHandler}>
                 {/* Name Input */}
                 <div className="relative mb-6">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
                     </div>
                 <input
+                    onChange={(e)=>{setEmail(e.target.value)}}
                     type="text"
                     placeholder="Your Name"
                     className="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block pl-10 p-3 placeholder-gray-400 transition"
@@ -47,6 +62,7 @@ const Register = () => {
                     <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                 </div>
                 <input
+                    onChange={(e)=>{setPassword(e.target.value)}}
                     type="password"
                     placeholder="Create a password"
                     className="w-full bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-teal-500 focus:border-teal-500 block pl-10 p-3 placeholder-gray-400 transition"
