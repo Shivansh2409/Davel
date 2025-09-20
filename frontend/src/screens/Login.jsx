@@ -19,7 +19,7 @@ const Login = () => {
             console.log(res.data)
             localStorage.setItem('token',res.data.token)
             setUser(res.data.user)
-            navigateTo('/')
+            navigateTo('/dashboard')
         }).catch((err)=>{
             console.log(err)
         })

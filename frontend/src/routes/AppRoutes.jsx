@@ -4,15 +4,20 @@ import Login from '../screens/Login'
 import Register from '../screens/Register'
 import Nav from '../screens/Nav'
 import Home from '../screens/Home'
+import DashboardPage from '../screens/Dashboard'
+import Project from '../screens/Project'
 
 export const AppRoutes = () => {
   return (
     <BrowserRouter>
+        
         <Nav/>
         <Routes>
             <Route path='/' element={<Home/>}></Route>
             <Route path='/login' element={<Login></Login>}></Route>
             <Route path='/register' element={<Register></Register>}></Route>
+            <Route path='/dashboard' element={<DashboardPage></DashboardPage>}></Route>
+            <Route path='/project' element={<Project></Project>}></Route>
         </Routes>
     </BrowserRouter>
   )

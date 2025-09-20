@@ -3,7 +3,8 @@ import cors from 'cors';
 import morgan from 'morgan';
 import main from './db/db.js';
 import userRoute from './routes/user.route.js';
-import  cookieParser from 'cookie-parser';
+import projectRoute from './routes/project.route.js';
+import cookieParser from 'cookie-parser';
 
 main().then(() => {
     console.log("Connected to MongoDB");
@@ -23,6 +24,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser())
 
 app.use('/users', userRoute);
+app.use('/projects',projectRoute);
 
 
 app.get('/', (req, res) => {

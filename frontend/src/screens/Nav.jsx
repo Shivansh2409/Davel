@@ -7,24 +7,21 @@ const Nav = () => {
     const navigateTo=useNavigate();
     const {user}=useContext(UserContext)
 
-    const token = localStorage.getItem('token');
-    function logoutHandler(e){
-        e.preventDefault()
-        axios.get('/users/logout',{
-      headers: {
-        // ✅ THIS IS THE CRUCIAL PART
-        'Authorization': `Bearer ${token}`
-      }
-      })
-        .then((res)=>{
-            console.log(res.data)
-            localStorage.setItem('token','null')
-            setUser(null)
-            navigateTo('/')
-        }).catch((err)=>{
-            console.log(err)
-        })
-    }
+    
+    // function logoutHandler(e){
+    //     e.preventDefault()
+    //     axios.get('/users/logout',{
+      
+    //   })
+    //     .then((res)=>{
+    //         console.log(res.data)
+    //         localStorage.setItem('token','null')
+    //         setUser(null)
+    //         navigateTo('/')
+    //     }).catch((err)=>{
+    //         console.log(err)
+    //     })
+    // }
   return (
     <div className="bg-gray-900 text-white font-sans">
       {/* Floating Navigation Bar */}
@@ -39,7 +36,7 @@ const Nav = () => {
             <a href="#" className="hover:text-purple-400 transition duration-300">About</a>
             <a href="#" className="hover:text-purple-400 transition duration-300">Contact</a>
           </div>
-            {
+            {/* {
                 user === null
                   ?  <button
                             onClick={() => navigateTo('/login')}
@@ -53,7 +50,13 @@ const Nav = () => {
                     >
                         log Out
                     </button>
-            }
+            } */}
+            <button
+                            onClick={() => navigateTo('/login')}
+                            className="bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l text-white font-semibold py-2 px-5 rounded-full transition-transform transform hover:scale-105 shadow-lg ml-8"
+                        >
+                            Sign Up
+                        </button>
          
         </div>
       </nav>
