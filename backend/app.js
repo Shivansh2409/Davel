@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import main from './db/db.js';
 import userRoute from './routes/user.route.js';
 import projectRoute from './routes/project.route.js';
+import aiRoute from './routes/ai.route.js';
 import cookieParser from 'cookie-parser';
 
 main().then(() => {
@@ -25,6 +26,7 @@ app.use(cookieParser())
 
 app.use('/users', userRoute);
 app.use('/projects',projectRoute);
+app.use('/ai',aiRoute);
 
 
 app.get('/', (req, res) => {

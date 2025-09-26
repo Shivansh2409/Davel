@@ -6,7 +6,7 @@ import Nav from '../screens/Nav'
 import Home from '../screens/Home'
 import DashboardPage from '../screens/Dashboard'
 import Project from '../screens/Project'
-
+import UserAuth from '../auth/UserAuth'
 export const AppRoutes = () => {
   return (
     <BrowserRouter>
@@ -16,8 +16,8 @@ export const AppRoutes = () => {
             <Route path='/' element={<Home/>}></Route>
             <Route path='/login' element={<Login></Login>}></Route>
             <Route path='/register' element={<Register></Register>}></Route>
-            <Route path='/dashboard' element={<DashboardPage></DashboardPage>}></Route>
-            <Route path='/project' element={<Project></Project>}></Route>
+            <Route path='/dashboard' element={<UserAuth><DashboardPage/></UserAuth>}></Route>
+            <Route path='/project' element={<UserAuth><Project/></UserAuth>}></Route>
         </Routes>
     </BrowserRouter>
   )

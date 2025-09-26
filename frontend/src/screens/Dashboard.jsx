@@ -20,6 +20,7 @@ export default function DashboardPage() {
       axios.post('/projects/create',{
         name:projectName,
       }).then((res)=>{
+        setProject(prevProjects => [...prevProjects, res.data]);
         setIsModalOpen(false);
         setProjectName('');
       }).catch((err)=>{
@@ -33,12 +34,15 @@ export default function DashboardPage() {
   useEffect(()=>{
     axios.get('/projects/all')
     .then((res)=>{
+        console.log('Projects fetched:', res.data.projects);
         setProject(res.data.projects)
     }).catch((err)=>{
         console.log(err);
         
     })
   },[])
+
+  const col=['purple','pink','teal']
   
 
   return (
@@ -62,9 +66,9 @@ export default function DashboardPage() {
 
                 {
                     
-                    project.map((project)=>(
-                        <div onClick={()=>navigateTo('/project',{state:{project}})} className="bg-gray-800 p-6 rounded-2xl shadow-lg border border-white/10 hover:border-purple-500 transition-all duration-300 cursor-pointer">
-                            <h2 className="text-2xl font-bold text-purple-400 mb-2">{project.name}</h2>
+                    project.map((project,indx)=>(
+                        <div onClick={()=>navigateTo('/project',{state:{project}})} className={`bg-gray-800 p-6 rounded-2xl shadow-lg border border-white/10 hover:border-${col[indx%3]}-500 transition-all duration-300 cursor-pointer`}>
+                            <h2 className={`text-2xl font-bold text-${col[indx%3]}-400 mb-2`}>{project.name}</h2>
                             <p className="text-gray-400 mb-4">Web development project for a client.</p>
                             <div className="text-sm text-gray-500">Number Of Participants:{project.users.length}</div>
                         </div>

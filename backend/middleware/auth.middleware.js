@@ -14,8 +14,8 @@ export const authUser = async (req, res, next) => {
         if (isBlackListed) {
 
             res.cookie('token', '');
-
-            return res.status(401).send({ error: 'Unauthorized User' });
+            console.log(req.headers.authorization.split(' ')[ 1 ])
+            return res.status(401).send({ error: 'Unauthorized User redis' });
         }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -24,7 +24,7 @@ export const authUser = async (req, res, next) => {
     } catch (error) {
 
         console.log(error);
-
+        console.log(req.headers.authorization.split(' ')[ 1 ])
         res.status(401).send({ error: 'Unauthorized User' });
     }
 }

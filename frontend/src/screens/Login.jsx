@@ -8,7 +8,7 @@ const Login = () => {
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
 
-    const {setUser}= useContext(UserContext)
+    const {setUser,user}= useContext(UserContext)
 
     function summitHandler(e){
         e.preventDefault()
@@ -17,9 +17,13 @@ const Login = () => {
             password
         }).then((res)=>{
             console.log(res.data)
-            localStorage.setItem('token',res.data.token)
-            setUser(res.data.user)
-            navigateTo('/dashboard')
+           
+                localStorage.setItem('token', res.data.token);
+                setUser(res.data.user)
+                console.log(res.data.token)
+                console.log(localStorage.getItem('token'))
+                navigateTo('/dashboard')
+            
         }).catch((err)=>{
             console.log(err)
         })
