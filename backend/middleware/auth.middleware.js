@@ -23,8 +23,6 @@ export const authUser = async (req, res, next) => {
         next();
     } catch (error) {
 
-        console.log(error);
-        console.log(req.headers.authorization.split(' ')[ 1 ])
         res.status(401).send({ error: 'Unauthorized User' });
     }
 }

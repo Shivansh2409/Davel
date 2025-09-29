@@ -136,3 +136,75 @@ export const updateFileTree = async ({ projectId, fileTree }) => {
 
     return project;
 }
+
+export const updateBuildCommand = async ({ projectId, buildCommand }) => {
+    if (!projectId) {
+        throw new Error("projectId is required")
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(projectId)) {
+        throw new Error("Invalid projectId")
+    }
+
+    if (!buildCommand) {
+        throw new Error("buildCommand is required")
+    }
+
+    const project = await projectModel.findOneAndUpdate({
+        _id: projectId
+    }, {
+        buildCommand
+    }, {
+        new: true
+    })
+
+    return project;
+}
+
+export const updateStartCommand = async ({ projectId, startCommand }) => {
+    if (!projectId) {
+        throw new Error("projectId is required")
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(projectId)) {
+        throw new Error("Invalid projectId")
+    }
+
+    if (!startCommand) {
+        throw new Error("startCommand is required")
+    }
+
+    const project = await projectModel.findOneAndUpdate({
+        _id: projectId
+    }, {
+        startCommand
+    }, {
+        new: true
+    })
+
+    return project;
+}
+
+export const addMessageToProject = async ({ projectId, message }) => {
+    if (!projectId) {
+        throw new Error("projectId is required")
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(projectId)) {
+        throw new Error("Invalid projectId")
+    }
+
+    if (!message) {
+        throw new Error("message is required")
+    }
+
+    const project = await projectModel.findOneAndUpdate({
+        _id: projectId
+    }, {
+        $push: { messages: message }
+    }, {
+        new: true
+    })
+
+    return project;
+}

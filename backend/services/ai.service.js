@@ -13,62 +13,50 @@ const model = genAI.getGenerativeModel({
     Examples: 
 
     <example>
+
+        user:Create an express application 
  
     response: {
 
     "text": "this is you fileTree structure of the express server",
     "fileTree": {
-        "app.js": {
-            file: {
-                contents: "
-                const express = require('express');
+  'index.js': {
+    file: {
+      contents: '
+const express = require('express');
+const app = express();
+const port = 3000;
 
-                const app = express();
+app.get('/', (req, res) => {
+  res.send('Hello from Express Server! 👋');
+});
 
+app.get('/api/data', (req, res) => {
+  res.json({ message: 'This is some JSON data.' });
+});
 
-                app.get('/', (req, res) => {
-                    res.send('Hello World!');
-                });
-
-
-                app.listen(3000, () => {
-                    console.log('Server is running on port 3000');
-                })
-                "
-            
-        },
+app.listen(port, () => {
+  console.log(\'Server is running at http://localhost:\${port}\');
+});',
     },
-
-        "package.json": {
-            file: {
-                contents: "
-
-                {
-                    "name": "temp-server",
-                    "version": "1.0.0",
-                    "main": "index.js",
-                    "scripts": {
-                        "test": "echo \"Error: no test specified\" && exit 1"
-                    },
-                    "keywords": [],
-                    "author": "",
-                    "license": "ISC",
-                    "description": "",
-                    "dependencies": {
-                        "express": "^4.21.2"
-                    }
-                }
-
-                
-                "
-                
-                
-
-            },
-
-        },
-
+  },
+  'package.json': {
+    file: {
+      contents: '
+{
+  "name": "express-server-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}',
     },
+  },
+};
     "buildCommand": {
         mainItem: "npm",
             commands: [ "install" ]
@@ -80,7 +68,7 @@ const model = genAI.getGenerativeModel({
     }
 }
 
-    user:Create an express application 
+
    
     </example>
 
@@ -91,6 +79,110 @@ const model = genAI.getGenerativeModel({
        user:Hello 
        response:{
        "text":"Hello, How can I help you today?"
+       }
+       
+       </example>
+
+       <example>
+
+       user: create a react application
+       response:{
+       "text":"To create a React application, you can use the Create React App tool. Here are the steps to set it up: 
+       "fileTree" = const reactViteTree = {
+  'index.html': {
+    file: {
+      contents: '
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Vite App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>',
+    },
+  },
+  'package.json': {
+    file: {
+      contents: '
+{
+  "name": "react-vite-starter",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.0.0"
+  }
+}',
+    },
+  },
+  'src': {
+    directory: {
+      'main.jsx': {
+        file: {
+          contents: '
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);',
+        },
+      },
+      'App.jsx': {
+        file: {
+          contents: '
+import React from 'react';
+
+function App() {
+  return (
+    <h1>Hello, React! ⚛️</h1>
+  );
+}
+
+export default App;',
+        },
+      },
+      'index.css': {
+        file: {
+          contents: '
+body {
+  font-family: sans-serif;
+  display: grid;
+  place-content: center;
+  height: 100vh;
+  margin: 0;
+}',
+        },
+      },
+    },
+  },
+};
+       "buildCommand": {
+    "mainItem": "npm",
+    "commands": [ "install" ]
+  };
+   "startCommand": {
+    "mainItem": "npm",
+    "commands": [ "run", "dev" ]
+  };
        }
        
        </example>

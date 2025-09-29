@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import { type } from 'os';
 
 
 const projectSchema = new mongoose.Schema({
@@ -19,6 +20,18 @@ const projectSchema = new mongoose.Schema({
     fileTree: {
         type: Object,
         default: {}
+    },
+    buildCommand: {
+        type: Object,
+        default: {}
+    },
+    startCommand: {
+        type: Object,
+        default: {}
+    },
+    messages: {
+        type: Array,
+        default:[]
     },
 
 })

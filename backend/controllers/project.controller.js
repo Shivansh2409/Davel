@@ -152,3 +152,87 @@ export const getFileTree= async(res,req)=>{
     }
 
 }
+
+export const updateStartCommand = async (req, res) => {
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+
+        const { projectId, startCommand } = req.body;
+
+        const updatedProject = await projectService.updateStartCommand({
+            projectId,
+            startCommand
+        })
+
+        return res.status(200).json({
+            project: updatedProject
+        })
+
+    } catch (err) {
+        console.log(err)
+        res.status(400).json({ error: err.message })
+    }
+
+}
+
+export const updateBuildCommand = async (req, res) => {
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+
+        const { projectId, buildCommand } = req.body;
+
+        const updatedProject = await projectService.updateBuildCommand({
+            projectId,
+            buildCommand
+        })
+
+        return res.status(200).json({
+            project: updatedProject
+        })
+
+    } catch (err) {
+        console.log(err)
+        res.status(400).json({ error: err.message })
+    }
+
+}
+
+export const addMessageToProject = async (req, res) => {
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    try {
+        // Read 'message' from the body, not 'messages_1'
+        const { projectId, message } = req.body;
+
+        const updatedProject = await projectService.addMessageToProject({
+            projectId,
+            message: message // Pass the single message object
+        })
+
+        return res.status(200).json({
+            project: updatedProject
+        })
+
+    } catch (err) {
+        console.log(err)
+        res.status(400).json({ error: err.message })
+    }
+
+}

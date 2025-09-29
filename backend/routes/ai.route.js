@@ -4,7 +4,7 @@ import * as aiController from '../controllers/ai.controller.js'
 import * as authMiddleWare from '../middleware/auth.middleware.js';
 
 router.get('/get-result',
-    // authMiddleWare.authUser,
+    authMiddleWare.authUser,
     aiController.getResult
 )
 

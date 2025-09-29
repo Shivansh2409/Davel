@@ -78,11 +78,27 @@ io.on('connection', socket => {
       const aiPresentInText = data.text.toLowerCase().includes("@ai");
 
       if(aiPresentInText){
+          
+
+          messagePayload = {
+            text: data.text,
+            sender: {
+                _id: socket.user.id, // Get user info from the authenticated socket
+                email: socket.user.email
+            },
+            createdAt: new Date()
+          };
+          io.to(room).emit('project-message', messagePayload);
+
           // Here you can integrate with your AI service to get a response
           // For demonstration, we'll just append a static response
           data.text = data.text.replace(/@ai/gi, "").trim();
-          const aiMessage=JSON.parse(await generateResult(data.text))
-
+          let aiMessage;
+          try {
+            aiMessage = JSON.parse(await generateResult(data.text));
+          } catch (error) {
+            aiMessage = "It's AI fault. Send message to AI again";
+          }
           messagePayload = {
             text: aiMessage,
             sender: {

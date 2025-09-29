@@ -37,4 +37,26 @@ router.get('/file-tree/:projectId',
     authMiddleWare.authUser,
     projectController.getFileTree
 )
+
+router.put('/build-command',
+    authMiddleWare.authUser,
+    body('projectId').isString().withMessage('Project ID is required'),
+    body('buildCommand').isObject().withMessage('buildCommand must be an object'),
+    projectController.updateBuildCommand
+)
+
+router.put('/start-command',
+    authMiddleWare.authUser,
+    body('projectId').isString().withMessage('Project ID is required'),
+    body('startCommand').isObject().withMessage('startCommand must be an object'),
+    projectController.updateStartCommand
+)
+
+router.put('/messages',
+    authMiddleWare.authUser,
+    body('projectId').isString().withMessage('Project ID is required'),
+    // Expect a single 'message' object, not an array
+    body('message').isObject().withMessage('message must be an object'),
+    projectController.addMessageToProject
+)
 export default router;
