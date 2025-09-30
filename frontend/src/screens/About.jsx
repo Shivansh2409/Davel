@@ -216,19 +216,19 @@ export default function AboutPage() {
           </p>
           <div className="flex justify-center items-center gap-6">
             <a
-              href="#"
+              href="https://github.com/Shivansh2409"
               className="text-gray-400 hover:text-purple-400 transition-colors"
             >
               <GithubIcon />
             </a>
             <a
-              href="#"
+              href="https://www.linkedin.com/in/shivanshrathor/"
               className="text-gray-400 hover:text-purple-400 transition-colors"
             >
               <LinkedinIcon />
             </a>
             <a
-              href="#"
+              href="https://my-portfolio-mauve-seven-88.vercel.app/"
               className="text-gray-400 hover:text-purple-400 transition-colors"
             >
               <TwitterIcon />

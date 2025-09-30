@@ -1,5 +1,6 @@
 import React from "react";
 import Nav from "./Nav";
+import { useNavigate } from "react-router-dom";
 
 // Icons for the page
 const ArrowRightIcon = () => (
@@ -129,6 +130,7 @@ app.listen(3000, () => {
   console.log('Server running on port 3000');
 });
   `.trim();
+  const navigate = useNavigate();
 
   const features = [
     {
@@ -200,6 +202,7 @@ app.listen(3000, () => {
           <div className="mt-10 flex justify-center gap-4 opacity-0 fade-in-up delay-2">
             <a
               href="#"
+              onClick={() => navigate("/register")}
               className="inline-flex items-center text-lg font-semibold bg-gradient-to-r from-teal-400 to-cyan-500 text-white py-3 px-8 rounded-full shadow-lg shadow-cyan-500/20 transform hover:scale-105 hover:shadow-cyan-500/40 transition-all duration-300"
             >
               <span>Start Building</span>
@@ -207,10 +210,11 @@ app.listen(3000, () => {
             </a>
             <a
               href="#"
+              onClick={() => navigate("/about")}
               className="inline-flex items-center gap-3 text-lg font-semibold bg-gray-800/80 backdrop-blur-sm border border-white/10 text-white py-3 px-8 rounded-full shadow-lg transform hover:scale-105 hover:border-white/20 transition-all duration-300"
             >
               <PlayIcon />
-              <span>Watch Demo</span>
+              <span>About</span>
             </a>
           </div>
 
@@ -312,7 +316,7 @@ app.listen(3000, () => {
               <TwitterIcon />
             </a>
             <a
-              href="#"
+              href="https://github.com/Shivansh2409"
               className="text-gray-400 hover:text-white transition-colors"
             >
               <GithubIcon />
