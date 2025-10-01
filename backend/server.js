@@ -13,7 +13,11 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONT_END, // Your frontend URL
+    origin: [
+      process.env.FRONT_END,
+      process.env.FRONT_END_2,
+      process.env.FRONT_END_3,
+    ], // Add your three frontend URLs in .env
     methods: ["GET", "POST"],
     credentials: true,
   },
