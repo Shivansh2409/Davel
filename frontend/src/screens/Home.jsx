@@ -287,6 +287,7 @@ app.listen(3000, () => {
             <div className="mt-8">
               <a
                 href="#"
+                onClick={() => navigate("/register")}
                 className="inline-flex items-center text-lg font-semibold bg-gradient-to-r from-teal-400 to-cyan-500 text-white py-3 px-8 rounded-full shadow-lg shadow-cyan-500/20 transform hover:scale-105 hover:shadow-cyan-500/40 transition-all duration-300"
               >
                 <span>Get Started for Free</span>
@@ -310,7 +311,7 @@ app.listen(3000, () => {
           </div>
           <div className="flex gap-6 mt-4 md:mt-0">
             <a
-              href="#"
+              href="https://my-portfolio-mauve-seven-88.vercel.app/"
               className="text-gray-400 hover:text-white transition-colors"
             >
               <TwitterIcon />

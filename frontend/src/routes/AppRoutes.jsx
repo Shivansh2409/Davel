@@ -9,6 +9,7 @@ import UserAuth from "../auth/UserAuth";
 import Help from "../screens/Help";
 import Features from "../screens/Features";
 import About from "../screens/About";
+import NotFoundPage from "../screens/NotFoundPage";
 
 export const AppRoutes = () => {
   return (
@@ -36,6 +37,7 @@ export const AppRoutes = () => {
         <Route path="/help" element={<Help />}></Route>
         <Route path="/features" element={<Features />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -11,8 +11,8 @@ const Nav_2 = () => {
   const navLinks = [
     { name: "Dashboard", href: "/" },
     { name: "Projects", href: "/dashboard" },
-    { name: "Tasks", href: "#" },
-    { name: "Team", href: "#" },
+    { name: "Tasks", href: "/not-found" },
+    { name: "Team", href: "/not-found" },
   ];
   function logoutHandler(e) {
     e.preventDefault();
