@@ -78,6 +78,9 @@ const Nav_2 = () => {
                   <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-gray-800 ring-1 ring-black ring-opacity-5">
                     <a
                       href="#"
+                      onClick={() => {
+                        navigateTo("/not-found");
+                      }}
                       className="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-700"
                     >
                       Your Profile
