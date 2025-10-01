@@ -306,7 +306,7 @@ export default function ContentPage() {
   useEffect(() => {
     getWebContainer().then((container) => {
       setWebContainer(container);
-
+      console.log("container started");
       // Listen for the server-ready event to get the preview URL
       container.on("server-ready", (port, url) => {
         console.log(`Server is ready at: ${url}`);
@@ -320,17 +320,17 @@ export default function ContentPage() {
     if (terminalRef.current) {
       terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
     }
-  }, [terminalOutput]);
+  }, [terminalOutput, terminalOutput_2]);
 
   // Effect to set initial file when component mounts
-  useEffect(() => {
-    if (!webContainer) {
-      getWebContainer().then((container) => {
-        setWebContainer(container);
-        console.log("container started");
-      });
-    }
-  }, []); // Run only once on mount
+  // useEffect(() => {
+  //   if (!webContainer) {
+  //     getWebContainer().then((container) => {
+  //       setWebContainer(container);
+  //       console.log("container started");
+  //     });
+  //   }
+  // }, []); // Run only once on mount
 
   useEffect(() => {
     const currentFile = openFiles.find((f) => f.name === activeFile);
@@ -535,6 +535,12 @@ export default function ContentPage() {
     //                                 setServerUrl(url)
     //                                 setInputUrl(url)
     //                             })
+    if (!webContainer || !buildCommand?.mainItem || !startCommand?.mainItem) {
+      alert(
+        "Container or commands not ready. Please wait for the AI to generate the project."
+      );
+      return;
+    }
 
     setIsRunning(true);
     setTerminalOutput("$ Setting up container...\n");
