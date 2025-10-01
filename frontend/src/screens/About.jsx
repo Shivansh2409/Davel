@@ -147,7 +147,7 @@ export default function AboutPage() {
               <div className="absolute -inset-2.5 bg-gradient-to-r from-teal-400 to-cyan-500 rounded-full blur-xl opacity-60 group-hover:opacity-80 transition duration-500"></div>
               <div className="absolute inset-0 bg-gray-800 rounded-full"></div>
               <img
-                src="../public/WhatsApp Image 2025-09-29 at 19.00.20.jpeg"
+                src="https://images.unsplash.com/photo-1562527949-fc1ca6f74074?q=80&w=1016&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="Creator of Devel AI"
                 className="relative rounded-full w-full h-full object-cover border-4 border-gray-700 transition-transform duration-500 group-hover:scale-105"
               />
